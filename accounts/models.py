@@ -305,20 +305,4 @@ def pre_save_news_receiver(sender, instance, *args, **kwargs):
         avatar_url=DISCORD_NEWS_BOT_AVATAR,
     )
 
-    # obj = {
-    # "content": "** @everyone Here is a news update ! **\n.",
-    # "embeds": [
-    #     {
-    #     "title": f"{instance.title}",
-    #     "description": f"{instance.content}",
-    #     "color": 720640,
-    #     "footer": {
-    #         "text": "Last Updated"
-    #     },
-    #     "timestamp": f'{instance.updated.strftime("%Y - %m - %d")}'
-    #     }
-    # ],
-    # "username": "StockiBot"
-    # }
-
 pre_save.connect(pre_save_news_receiver, sender=News)

@@ -42,7 +42,7 @@ a.dropdown-item.active {
 
 .image-home {
     background: url("https://entefy.com/uploads/editor/071f8a36715a8a6b7f7ded54074cc8c6.gif");
-    background-attachment: fixed;
+    /* background-attachment: fixed; */
     background-repeat: no-repeat;
     background-size: cover;
     height: 600px;

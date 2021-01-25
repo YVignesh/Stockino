@@ -41,14 +41,14 @@ MANAGERS = (
 ADMINS = MANAGERS
 
 # Bank Data
-DEFAULT_LOAN_AMOUNT = Decimal(5000.00)
+DEFAULT_LOAN_AMOUNT = Decimal(25000.00)
 MAX_LOAN_ISSUE = 10
-RATE_OF_INTEREST = Decimal(0.15)  # 15%
-TAX_RATE = Decimal(0.40)  # 40%
+RATE_OF_INTEREST = Decimal(0.10)  # 15%
+TAX_RATE = Decimal(0.15)  # 40%
 
 # Global settings
-START_TIME = datetime(2020, 10, 25, 0, 0, 0)
-STOP_TIME = datetime(2021, 12, 25, 0, 0, 0)
+START_TIME = START_TIME = datetime.strptime(os.getenv("START_TIME"), "%Y/%m/%d:%H:%M:%S")
+STOP_TIME = datetime.strptime(os.getenv("STOP_TIME"), "%Y/%m/%d:%H:%M:%S")
 
 
 # Application definition
