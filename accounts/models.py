@@ -20,6 +20,7 @@ DEFAULT_ACTIVATION_DAYS = getattr(settings, 'DEFAULT_ACTIVATION_DAYS', 7)
 DEFAULT_LOAN_AMOUNT = getattr(settings, 'DEFAULT_LOAN_AMOUNT', Decimal(10000.00))
 RATE_OF_INTEREST = getattr(settings, 'RATE_OF_INTEREST', Decimal(0.15))
 MAX_LOAN_ISSUE = getattr(settings, 'MAX_LOAN_ISSUE')
+DEFAULT_CASH =  getattr(settings, 'DEFAULT_CASH')
 
 DISCORD_NEWS_BOT_URL = getattr(settings, 'DISCORD_NEWS_BOT_URL')
 DISCORD_NEWS_BOT_AVATAR = getattr(settings, 'DISCORD_NEWS_BOT_AVATAR')
@@ -75,10 +76,10 @@ class User(AbstractBaseUser):
     email = models.EmailField(unique=True, max_length=255)
     full_name = models.CharField(max_length=255, blank=True, null=True)
     teammates = models.CharField(max_length=100, blank=True, null=True)
-    cash = models.DecimalField(max_digits=20, decimal_places=2, default=DEFAULT_LOAN_AMOUNT)
-    loan = models.DecimalField(max_digits=20, decimal_places=2, default=DEFAULT_LOAN_AMOUNT)
-    loan_count = models.IntegerField(default=1)  # For arithmetic interest calculation
-    loan_count_absolute = models.IntegerField(default=1)  # For overall loan issue count
+    cash = models.DecimalField(max_digits=20, decimal_places=2, default=DEFAULT_CASH)
+    loan = models.DecimalField(max_digits=20, decimal_places=2, default=0)
+    loan_count = models.IntegerField(default=0)  # For arithmetic interest calculation
+    loan_count_absolute = models.IntegerField(default=0)  # For overall loan issue count
     coeff_of_variation = models.DecimalField(max_digits=20, decimal_places=2, default=0.00)  # For tie breaker in leaderboard
     is_active = models.BooleanField(default=True)
     staff = models.BooleanField(default=False)
@@ -240,7 +241,7 @@ class EmailActivation(models.Model):
                 path = '{base}{path}'.format(base=base_url, path=key_path)
                 context = {
                     'path': path,
-                    'email': self.email
+                    'username': self.username
                 }
                 txt_ = get_template('registration/emails/verify.txt').render(context)
                 html_ = get_template('registration/emails/verify.html').render(context)

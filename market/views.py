@@ -135,7 +135,7 @@ class CompanyTransactionView(LoginRequiredMixin, CountNewsMixin, View):
             user = request.user
             mode = request.POST.get('mode')
             quantity = int(request.POST.get('quantity'))
-            price = Decimal(request.POST.get('qoute_amount'))
+            price = Decimal(request.POST.get('quote_amount'))
             investment_obj, obj_created = InvestmentRecord.objects.get_or_create(user=user, company=company)
             if quantity > 0:
                 if mode == 'buy':

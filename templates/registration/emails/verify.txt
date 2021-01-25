@@ -1,6 +1,6 @@
 Hello,
 
-Please activate your account for {{ email }} by clicking the link below:
+Please activate your account for {{ username }} by clicking the link below:
 
 {{ path }}
 

@@ -29,6 +29,8 @@ User = get_user_model()
 
 START_TIME = timezone.make_aware(getattr(settings, 'START_TIME'))
 STOP_TIME = timezone.make_aware(getattr(settings, 'STOP_TIME'))
+DEFAULT_LOAN_AMOUNT = getattr(settings, 'DEFAULT_LOAN_AMOUNT')
+MAX_LOAN_ISSUE = getattr(settings, 'MAX_LOAN_ISSUE')
 
 # In admin panel
 @login_required
@@ -60,7 +62,9 @@ class LoanView(LoginRequiredMixin, CountNewsMixin, View):
 
     def get(self, request, *args, **kwargs):
         return render(request, 'accounts/loan.html', {
-            'user': request.user
+            'user_loan': request.user.loan,
+            'user_cash' : request.user.cash,
+            'defaultLoanAmount' : DEFAULT_LOAN_AMOUNT,
         })
 
     def post(self, request, *args, **kwargs):
@@ -73,7 +77,7 @@ class LoanView(LoginRequiredMixin, CountNewsMixin, View):
                 if user.issue_loan():
                     messages.success(request, 'Loan has been issued.')
                 else:
-                    messages.error(request, 'You can issue loan only 1 time!')
+                    messages.error(request, 'You can issue loan only {} times!'.format(MAX_LOAN_ISSUE))
             elif mode == 'pay':
                 if user.pay_installment():
                     messages.success(request, 'Installment paid!')

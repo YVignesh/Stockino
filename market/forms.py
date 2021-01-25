@@ -14,7 +14,7 @@ class StockTransactionForm(forms.Form):
         'placeholder': 'Enter integers only'
     }))
 
-    qoute_amount = forms.CharField(required=True, widget=forms.TextInput(attrs={
+    quote_amount = forms.CharField(required=True, widget=forms.TextInput(attrs={
         'class': 'form-control',
         'pattern': '[0-9.]+',
         'title': 'Enter integers only',
