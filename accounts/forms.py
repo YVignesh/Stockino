@@ -130,8 +130,8 @@ class RegisterForm(forms.ModelForm):
         attrs={'class': 'form-control my-2', 'placeholder': 'Username'}
     ))
 
-    full_name = forms.CharField(label='Team Member 1', widget=forms.TextInput(
-        attrs={'class': 'form-control my-2', 'placeholder': 'Team Member 1'}
+    full_name = forms.CharField(label='Full Name', widget=forms.TextInput(
+        attrs={'class': 'form-control my-2', 'placeholder': 'Full Name'}
     ))    
     email = forms.EmailField(label='Email', widget=forms.EmailInput(
         attrs={'class': 'form-control my-2', 'placeholder': 'Email'}
@@ -139,12 +139,12 @@ class RegisterForm(forms.ModelForm):
     
     # Not Required
 
-    teamMember_2_Name = forms.CharField(label='Team Member 2', widget=forms.TextInput(
-        attrs={'class': 'form-control my-2', 'placeholder': 'Team Member 2'}
-    ))
-    teamMember_3_Name = forms.CharField(label='Team Member 3', widget=forms.TextInput(
-        attrs={'class': 'form-control my-2', 'placeholder': 'Team Member 3'}
-    ))
+    # teamMember_2_Name = forms.CharField(label='Team Member 2', widget=forms.TextInput(
+    #     attrs={'class': 'form-control my-2', 'placeholder': 'Team Member 2'}
+    # ))
+    # teamMember_3_Name = forms.CharField(label='Team Member 3', widget=forms.TextInput(
+    #     attrs={'class': 'form-control my-2', 'placeholder': 'Team Member 3'}
+    # ))
 
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput(
         attrs={'class': 'form-control my-2', 'placeholder': 'Password'}
@@ -174,7 +174,8 @@ class RegisterForm(forms.ModelForm):
     def save(self, commit=True):
         """ Save the provided password in hashed format """
         user = super(RegisterForm, self).save(commit=False)
-        user.teammates = ", ".join([self.cleaned_data.get('teamMember_2_Name'), self.cleaned_data.get('teamMember_3_Name')])
+        # user.teammates = ", ".join([self.cleaned_data.get('teamMember_2_Name'), self.cleaned_data.get('teamMember_3_Name')])
+        user.teammates = "TEAMMATES"
         user.set_password(self.cleaned_data["password1"])
         user.is_active = False
         if commit:
