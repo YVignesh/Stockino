@@ -241,7 +241,7 @@ class EmailActivation(models.Model):
                 path = '{base}{path}'.format(base=base_url, path=key_path)
                 context = {
                     'path': path,
-                    'username': self.username
+                    'username': self.user.username,
                 }
                 txt_ = get_template('registration/emails/verify.txt').render(context)
                 html_ = get_template('registration/emails/verify.html').render(context)

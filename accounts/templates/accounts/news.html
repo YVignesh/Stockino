@@ -15,18 +15,14 @@
 <div class="row">
     {% for object in object_list %}
         <div class="col-12">
-        <div class="card bg-light mt-2">
-            <div class="card-body">
-              <h5 class="card-title">{{object.title}}</h5>
-              <h6 class="card-subtitle mb-2 text-muted">{{object.updated | date:"d M Y | h:i:s"}}</h6>
-              <p class="card-text mt-4">{{object.content}}</p>
+            <div class="card bg-light mt-2">
+                <div class="card-body">
+                <h5 class="card-title">{{object.title}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{object.updated | date:"d M Y | h:i:s"}}</h6>
+                <p class="card-text mt-4">{{object.content}}</p>
+                </div>
             </div>
         </div>
-        <!-- <div class="col-12">
-            <div class="alert alert-success text-center" role="alert">
-              {{ object.content|linebreaks }}
-            </div>
-        </div> -->
     {% endfor %}
 </div>
 {% else %}
