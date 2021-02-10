@@ -1,9 +1,6 @@
 import os
-#import dj_database_url
 from decimal import Decimal
-#from decouple import config
 from datetime import datetime
-import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -18,12 +15,12 @@ DISCORD_NEWS_BOT_AVATAR = os.environ.get('DISCORD_NEWS_BOT_AVATAR', "https://med
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY', 'This is a secret')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
 
-ALLOWED_HOSTS = ['.herokuapp.com']
+ALLOWED_HOSTS = ['128.199.22.78']
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
@@ -48,8 +45,8 @@ RATE_OF_INTEREST = Decimal(0.10)  # 15%
 TAX_RATE = Decimal(0.15)  # 40%
 
 # Global settings
-START_TIME = START_TIME = datetime.strptime(os.getenv("START_TIME"), "%Y/%m/%d:%H:%M:%S")
-STOP_TIME = datetime.strptime(os.getenv("STOP_TIME"), "%Y/%m/%d:%H:%M:%S")
+START_TIME = datetime.strptime(os.getenv("START_TIME", "2021/02/01:00:00:00"), "%Y/%m/%d:%H:%M:%S")
+STOP_TIME = datetime.strptime(os.getenv("STOP_TIME", "2022/02/01:00:00:00"), "%Y/%m/%d:%H:%M:%S")
 
 
 # Application definition
@@ -182,5 +179,3 @@ CSRF_COOKIE_SECURE = True
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_SECONDS = 1000000
 SECURE_FRAME_DENY = True
-
-django_heroku.settings(locals())

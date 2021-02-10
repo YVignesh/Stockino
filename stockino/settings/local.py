@@ -32,7 +32,8 @@ DEFAULT_ACTIVATION_DAYS = 7
 DEFAULT_FROM_EMAIL = 'PSG Eclub Stockino'
 
 # Bank Data
-DEFAULT_LOAN_AMOUNT = Decimal(5000.00)
+DEFAULT_CASH = Decimal(100000.00)
+DEFAULT_LOAN_AMOUNT = Decimal(25000.00)
 MAX_LOAN_ISSUE = 10
 RATE_OF_INTEREST = Decimal(0.15)  # 15%
 TAX_RATE = Decimal(0.40)  # 40%
@@ -163,7 +164,6 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static_cdn', 'media_root')
 
 # from stockino.aws.conf import *
-
 
 # removing SSL/TLS settings for local environment
 CORS_REPLACE_HTTPS_REFERER = False
